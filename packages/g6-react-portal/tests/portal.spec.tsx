@@ -93,7 +93,6 @@ describe("G6 React Portal", () => {
     );
 
     const graphBox = screen.getByTestId("graphBox");
-    expect(graphBox).toBeDefined();
 
     graph.setOptions({
       container: graphBox,
@@ -116,7 +115,6 @@ describe("G6 React Portal", () => {
     );
 
     const graphBox = screen.getByTestId("graphBox");
-    expect(graphBox).toBeDefined();
 
     graph.setOptions({
       container: graphBox,
@@ -137,6 +135,12 @@ describe("G6 React Portal", () => {
     expect(screen.getByTestId("node1-name")).toHaveTextContent(
       "Updated Node 1"
     );
+
+    graph.removeNodeData(["node2"]);
+    await act(() => graph.render());
+    expect(screen.queryByTestId("node1")).toBeDefined();
+    expect(screen.queryByTestId("node2")).toBeNull();
+    expect(screen.queryByTestId("node3")).toBeDefined();
   });
 
   it("Support Context API in ReactNode", async () => {
@@ -153,7 +157,6 @@ describe("G6 React Portal", () => {
     );
 
     const graphBox = screen.getByTestId("graphBox");
-    expect(graphBox).toBeDefined();
 
     graph.setOptions({
       container: graphBox,
