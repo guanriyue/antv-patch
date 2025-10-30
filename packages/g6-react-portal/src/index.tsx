@@ -109,12 +109,6 @@ const createStore = (graph?: Graph | undefined | null) => {
       }
 
       const portals = graphToPortalsMap.get(graph);
-      if (portals) {
-        // console.log(
-        //   "Getting portals snapshot:",
-        //   Object.values(portals).map((i) => i.children.props.data)
-        // );
-      }
       return portals || empty;
     },
   };

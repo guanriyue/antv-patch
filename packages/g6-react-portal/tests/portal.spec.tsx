@@ -138,9 +138,13 @@ describe("G6 React Portal", () => {
 
     graph.removeNodeData(["node2"]);
     await act(() => graph.render());
+    expect(screen.queryAllByTestId(/^node\d$/)).toHaveLength(2);
     expect(screen.queryByTestId("node1")).toBeDefined();
     expect(screen.queryByTestId("node2")).toBeNull();
     expect(screen.queryByTestId("node3")).toBeDefined();
+
+    act(() => graph.destroy());
+    expect(screen.queryAllByTestId(/^node\d$/)).toHaveLength(0);
   });
 
   it("Support Context API in ReactNode", async () => {
